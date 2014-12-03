@@ -1,0 +1,54 @@
+{% extends "_layouts/cp" %}
+{% includeCssResource "formbuilder/css/formBuilder.css" %}
+
+{% set title = "Form Submission Details" %}
+
+{% set extraPageHeaderHtml %}
+  <a href="{{ url('formbuilder') }}">
+  <div class="icon">
+  <?xml version="1.0" encoding="utf-8"?>
+  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+    <svg version="1.1" id="layers" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+       width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+      <polygon id="layer3" points="80.5,60 94.9,67 49.9,88.6 4.9,67 19.4,60 22.5,61.5 11.3,67 49.9,85.6 88.6,67 77.3,61.5 "/>
+      <polygon id="layer2" points="77.3,44.6 88.6,50 49.9,68.6 11.3,50 22.5,44.6 19.4,43.1 4.9,50 49.9,71.7 94.9,50 80.5,43.1 "/>
+      <polygon id="layer1" points="94.9,33.1 49.9,11.4 4.9,33.1 49.9,54.7 "/>
+    </svg>
+  </div>
+  <img src="{{ resourceUrl('formbuilder/images/formBuilder_logo.png') }}" /></a>
+{% endset %}
+
+{% set content %}
+  
+  <div id="entryDetails">
+  <header>
+    <h1>{{ form.name }}</h1>
+    <h2>Form ID: <span>{{ entry.id }}</span></h2>
+    <h2>Submitted: <span>{{ entry.dateCreated | date('F jS, Y') }} at {{ entry.dateCreated | date('g:h A') }}</span></h2>
+  </header>
+
+  <hr>
+
+  <table class="data fullwidth collapsible">
+    {% for name, value in data %}
+      {% if value %}
+      <tr>
+        <td><strong>{{ name | addSpace }}</strong></td>
+        <td>{{ value | markdown }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+  
+  </div>
+
+  <hr>
+
+  <form method="post" accept-charset="utf-8">
+    <input type="hidden" name="action" value="formBuilder/entries/deleteEntry">
+    <input type="hidden" name="redirect" value="formbuilder/entries">
+    <input type="hidden" name="entryId" value="{{ entry.id }}">
+    <button class="btn delete submit">Delete Entry</button>
+  </form>
+
+{% endset %}

@@ -1,0 +1,61 @@
+{% extends "_layouts/cp" %}
+{% includeCssResource "formbuilder/css/formBuilder.css" %}
+
+{% set title = "Forms"|t %}
+{% set selectedTab = 'forms' %}
+{% set docsUrl = 'http://github.com/wiki' %}
+
+{% set extraPageHeaderHtml %}
+	<a href="{{ url('formbuilder') }}">
+	<div class="icon">
+	<?xml version="1.0" encoding="utf-8"?>
+	<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+		<svg version="1.1" id="layers" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+			<polygon id="layer3" points="80.5,60 94.9,67 49.9,88.6 4.9,67 19.4,60 22.5,61.5 11.3,67 49.9,85.6 88.6,67 77.3,61.5 "/>
+			<polygon id="layer2" points="77.3,44.6 88.6,50 49.9,68.6 11.3,50 22.5,44.6 19.4,43.1 4.9,50 49.9,71.7 94.9,50 80.5,43.1 "/>
+			<polygon id="layer1" points="94.9,33.1 49.9,11.4 4.9,33.1 49.9,54.7 "/>
+		</svg>
+	</div>
+	<img src="{{ resourceUrl('formbuilder/images/formBuilder_logo.png') }}" /></a>
+{% endset %}
+
+{% set content %}
+	<div id="noforms"{% if forms %} class="hidden"{% endif %}>
+		<p>{{ "No forms exist yet."|t }}</p>
+	</div>
+
+	{% if forms|length %}
+		<table id="forms" class="data fullwidth collapsible">
+			<thead>
+				<th scope="col">{{ "Name"|t }}</th>
+				<th scope="col">{{ "Handle"|t }}</th>
+				<td class="thin"></td>
+			</thead>
+			<tbody>
+				{% for form in forms %}
+					<tr data-id="{{ form.id }}" data-name="{{ form.name|t }}">
+						<th scope="row" data-title="{{ 'Name'|t }}"><a href="{{ url('formbuilder/forms/' ~ form.id) }}">{{ form.name|t }}</a></th>
+						<td data-title="{{ 'Handle'|t }}"><code>{{ form.handle }}</code></td>
+						<td class="thin"><a class="delete icon" title="{{ 'Delete'|t }}" role="button"></a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}
+
+	<div id="newformcontainer" class="buttons">
+		<a href="{{ url('formbuilder/forms/new') }}" class="btn submit add icon">{{ "New form"|t }}</a>
+	</div>
+{% endset %}
+
+{% set js %}
+	var adminTable = new Craft.AdminTable({
+		tableSelector: '#forms',
+		noObjectsSelector: '#noforms',
+		newObjectBtnSelector: '#newformcontainer',
+		deleteAction: 'formBuilder/forms/deleteForm',
+		confirmDeleteMessage: '{{ "Are you sure you want to delete “{name}” and all its entries?"|t }}'
+	});
+{% endset %}
+{% includeJs js %}

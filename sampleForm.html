@@ -1,0 +1,45 @@
+{% extends "_layout" %}
+{% import "_includes/forms" as forms %}
+
+{% set form = craft.formBuilder.getFormByHandle('ENTER YOUR FORM HANDLE HERE') %}
+{% set fields = form.fieldLayout.getFieldLayout().getFields() %}
+
+{% block content %}
+<div class="container">
+
+{# Error handling #}
+{% if craft.session.hasFlash('error') %}
+  <div class="errors">
+  {% for error in craft.session.getFlash('error').required %}
+    <p class="error">{{ error }}</p>
+  {% endfor %}
+  </div>
+{% endif %}
+
+{# Success handling #}
+{% if craft.session.hasFlash('success') %}
+  <p class="success">{{ craft.session.getFlash('success') | raw }}</p>
+{% endif %}
+
+<form method="post" accept-charset="utf-8">
+  <input type="hidden" name="action" value="formBuilder/entries/saveFormEntry">
+  <input type="hidden" name="redirect" value="/">
+  <input type="hidden" name="formHandle" value="{{form.handle}}">
+  <input type="hidden" name="formHoneypot" value="">
+  <input type="hidden" name="required[yourEmail]" value="Please enter your email address.">
+
+  {% for field in fields %}
+    {% include "_includes/field" with {
+      field: craft.fields.getFieldById(field.fieldId),
+      required: field.required,
+    } only %}
+  {% endfor %}
+
+  <button type="submit">
+    Submit Message
+  </button>
+
+</form>
+
+</div>
+{% endblock %}

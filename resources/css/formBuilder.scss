@@ -1,0 +1,75 @@
+@import "mixins";
+
+// ------------------------------------------
+// Plugin Header
+// ------------------------------------------
+#page-header {
+  padding: 5px 0;
+  & > h1 { display: none;}
+}
+
+#extra-headers {
+  a {
+    display: block;
+    outline: none;
+  }
+  .icon {
+    float: left;
+    margin-top: 14px;
+  }
+  #layers {
+    width: 40px;
+    height: 40px;
+    * { @include transition(all .3s ease); }
+  }
+
+  &:hover {
+    #layer3 { @include transform(translateY(5px)); @include transition-delay(0.2s); }
+    #layer2 { @include transform(translateY(5px)); @include transition-delay(0.1s); }
+    #layer1 { @include transform(translateY(5px)); }
+  }
+}
+
+// ------------------------------------------
+// Entry Details
+// ------------------------------------------
+#entryDetails {
+  header {
+    h1 {
+      font-weight: bold;
+      margin-bottom: 10px;
+      span {
+        display: block;
+        padding-top: 5px;
+        color: black;
+        font: {
+          size: 12px;
+        }
+      }
+    }
+    h2 {
+      margin: 0;
+      font: {
+        size: 12px;
+      }
+      span {
+        color: #da5a47;
+      }
+    }
+  }
+}
+
+// ------------------------------------------
+// Entries Sidebar
+// ------------------------------------------
+#sidebar {
+  .buttons.first { display: none; }
+}
+
+// ------------------------------------------
+// Entries Content
+// ------------------------------------------
+#content {
+  .toolbar { display: none; }
+}
+

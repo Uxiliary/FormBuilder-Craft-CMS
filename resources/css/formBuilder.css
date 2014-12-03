@@ -1,0 +1,62 @@
+#page-header {
+  padding: 5px 0; }
+  #page-header > h1 {
+    display: none; }
+
+#extra-headers a {
+  display: block;
+  outline: none; }
+#extra-headers .icon {
+  float: left;
+  margin-top: 14px; }
+#extra-headers #layers {
+  width: 40px;
+  height: 40px; }
+  #extra-headers #layers * {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+#extra-headers:hover #layer3 {
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  transform: translateY(5px);
+  -webkit-transition-delay: 0.2s;
+  -moz-transition-delay: 0.2s;
+  transition-delay: 0.2s; }
+#extra-headers:hover #layer2 {
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  transform: translateY(5px);
+  -webkit-transition-delay: 0.1s;
+  -moz-transition-delay: 0.1s;
+  transition-delay: 0.1s; }
+#extra-headers:hover #layer1 {
+  -webkit-transform: translateY(5px);
+  -moz-transform: translateY(5px);
+  -ms-transform: translateY(5px);
+  -o-transform: translateY(5px);
+  transform: translateY(5px); }
+
+#entryDetails header h1 {
+  font-weight: bold;
+  margin-bottom: 10px; }
+  #entryDetails header h1 span {
+    display: block;
+    padding-top: 5px;
+    color: black;
+    font-size: 12px; }
+#entryDetails header h2 {
+  margin: 0;
+  font-size: 12px; }
+  #entryDetails header h2 span {
+    color: #da5a47; }
+
+#sidebar .buttons.first {
+  display: none; }
+
+#content .toolbar {
+  display: none; }

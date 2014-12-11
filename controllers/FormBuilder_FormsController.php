@@ -58,13 +58,14 @@ class FormBuilder_FormsController extends BaseController
 		$form = new FormBuilder_FormModel();
 
 		// Shared attributes
-		$form->id         									= craft()->request->getPost('formId');
-		$form->name       									= craft()->request->getPost('name');
-		$form->handle     									= craft()->request->getPost('handle');
-		$form->toEmail     									= craft()->request->getPost('toEmail');
-		$form->subject     									= craft()->request->getPost('subject');
-		$form->notifyRegistrant     				= craft()->request->getPost('notifyRegistrant');
-		$form->notificationTemplatePath     = craft()->request->getPost('notificationTemplatePath');
+		$form->id         														= craft()->request->getPost('formId');
+		$form->name       														= craft()->request->getPost('name');
+		$form->handle     														= craft()->request->getPost('handle');
+		$form->toEmail     														= craft()->request->getPost('toEmail');
+		$form->subject     														= craft()->request->getPost('subject');
+		$form->notifyRegistrant     									= craft()->request->getPost('notifyRegistrant');
+		$form->notificationTemplatePathRegistrant     = craft()->request->getPost('notificationTemplatePathRegistrant');
+		$form->notificationTemplatePath     					= craft()->request->getPost('notificationTemplatePath');
 
 		// Set the field layout
 		$fieldLayout = craft()->fields->assembleLayoutFromPost();

@@ -1,0 +1,19 @@
+{% if form is defined %}
+  <h3>Hi, you have filled out a {{ form.name }}. Bellow is your submission details.</h3>
+{% endif %}
+<hr>
+{% if data is defined %}
+  <table>
+  {% for key, value in data %}
+    {% if value %}
+    <tr>
+      <td><strong>{{ key | addSpace }}: </strong></td>
+      <td>{{ value }}</td>
+    </tr>
+    {% endif %}
+  {% endfor %}
+  <tr>
+    <td>Have a nice day!</td>
+  </tr>
+  </table>
+{% endif %}

@@ -80,6 +80,19 @@
 			errors: form.getErrors('notifyRegistrant'),
 			required: false
 		}) }}
+		
+		<div class="registrantEmailTemplate" style="width: 100%;">
+		{{ forms.textField({
+			label: "Registrant Email Template Path"|t,
+			instructions: "Enter Email Template Path for Registrant. default 'formbuilder/email/registrant'"|t,
+			id: 'notificationTemplatePathRegistrant',
+			class: 'notificationTemplatePathRegistrant',
+			name: 'notificationTemplatePathRegistrant',
+			value: form.notificationTemplatePathRegistrant ? form.notificationTemplatePathRegistrant : "formbuilder/email/registrant"|t,
+			errors: form.getErrors('notificationTemplatePathRegistrant'),
+			required: true
+		}) }}
+		</div>
 
 		{{ forms.textField({
 			label: "Email Template Path"|t,
@@ -110,5 +123,20 @@
 
 {% set js %}
 	{% if not form.handle %}new Craft.HandleGenerator('#name', '#handle');{% endif %}
+	
+	if($(".notifyRegistrant").is(':checked')) {
+		$('.registrantEmailTemplate').show()
+	} else {
+		$('.registrantEmailTemplate').hide()
+	}
+
+  $(".notifyRegistrant").change(function() {
+    if(this.checked) {
+    	$('.registrantEmailTemplate').slideDown()
+    } else {
+    	$('.registrantEmailTemplate').slideUp()
+    }
+  });
+
 {% endset %}
 {% includeJs js %}

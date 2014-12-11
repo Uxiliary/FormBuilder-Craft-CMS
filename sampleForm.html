@@ -1,7 +1,7 @@
 {% extends "_layout" %}
 {% import "_includes/forms" as forms %}
 
-{% set form = craft.formBuilder.getFormByHandle('ENTER YOUR FORM HANDLE HERE') %}
+{% set form = craft.formBuilder.getFormByHandle('subscriptionForm') %}
 {% set fields = form.fieldLayout.getFieldLayout().getFields() %}
 
 {% block content %}
@@ -16,6 +16,11 @@
   </div>
 {% endif %}
 
+{# Notice handling #}
+{% if craft.session.hasFlash('notice') %}
+  <p class="notice">{{ craft.session.getFlash('notice') | raw }}</p>
+{% endif %}
+
 {# Success handling #}
 {% if craft.session.hasFlash('success') %}
   <p class="success">{{ craft.session.getFlash('success') | raw }}</p>
@@ -26,7 +31,16 @@
   <input type="hidden" name="redirect" value="/">
   <input type="hidden" name="formHandle" value="{{form.handle}}">
   <input type="hidden" name="formHoneypot" value="">
-  <input type="hidden" name="required[yourEmail]" value="Please enter your email address.">
+  <input type="hidden" name="required[yourEmail]" value="Please enter your email">
+
+  
+  {# Email Address #}
+  {{forms.textField({
+    label:  "Email Address"|t,
+    name:   "yourEmail",
+    id:     "yourEmail",
+    value:  form.yourEmail is defined ? form.yourEmail : '',
+  })  }}
 
   {% for field in fields %}
     {% include "_includes/field" with {

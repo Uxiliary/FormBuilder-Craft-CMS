@@ -4,7 +4,8 @@ namespace Craft;
 class FormBuilder_EntriesController extends BaseController
 {
 	protected $allowAnonymous = true;
-	protected $defaultEmailTemplate = 'formbuilder/email/default';
+  protected $defaultEmailTemplate = 'formbuilder/email/default';
+	protected $defaultRegistrantEmailTemplate = 'formbuilder/email/registrant';
 	
 	/**
 	 * View Form Entry
@@ -225,12 +226,12 @@ class FormBuilder_EntriesController extends BaseController
 		}
 
 		// Email template
-		if (craft()->templates->findTemplate($form->notificationTemplatePath)) {
-			$template = $form->notificationTemplatePath;
+		if (craft()->templates->findTemplate($form->notificationTemplatePathRegistrant)) {
+			$template = $form->notificationTemplatePathRegistrant;
 		}
 
 		if (!$template) {
-			$template = $this->defaultEmailTemplate;
+			$template = $this->defaultRegistrantEmailTemplate;
 		}
 
 		$variables = array(

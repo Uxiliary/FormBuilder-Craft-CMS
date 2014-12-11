@@ -20,15 +20,16 @@ class FormBuilder_FormModel extends BaseModel
 	protected function defineAttributes()
 	{
 		return array(
-			'id'            								=> AttributeType::Number,
-			'name'          								=> AttributeType::String,
-			'handle'        								=> AttributeType::String,
-			'toEmail'      									=> AttributeType::String,
-			'subject'       								=> AttributeType::String,
-			'yourEmail'    									=> AttributeType::String,
-			'notifyRegistrant'      				=> AttributeType::Bool,
-			'notificationTemplatePath'      => AttributeType::String,
-			'fieldLayoutId' 								=> AttributeType::Number,
+			'id'            													=> AttributeType::Number,
+			'name'          													=> AttributeType::String,
+			'handle'        													=> AttributeType::String,
+			'toEmail'      														=> AttributeType::String,
+			'subject'       													=> AttributeType::String,
+			'yourEmail'    														=> AttributeType::String,
+			'notifyRegistrant'      									=> AttributeType::Bool,
+			'notificationTemplatePathRegistrant'      => AttributeType::String,
+			'notificationTemplatePath'      					=> AttributeType::String,
+			'fieldLayoutId' 													=> AttributeType::Number,
 		);
 	}
 

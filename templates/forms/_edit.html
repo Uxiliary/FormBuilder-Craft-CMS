@@ -69,6 +69,18 @@
 			required: false
 		}) }}
 
+		{{ forms.checkboxField({
+			label: "Notify Registrant?"|t,
+			instructions: "Should the form send notification to registrant? Note: you must include custom email field in your form for this to work."|t,
+			id: 'notifyRegistrant',
+			class: 'notifyRegistrant',
+			name: 'notifyRegistrant',
+			value: 1,
+			checked: form.notifyRegistrant,
+			errors: form.getErrors('notifyRegistrant'),
+			required: false
+		}) }}
+
 		{{ forms.textField({
 			label: "Email Template Path"|t,
 			instructions: "Enter Email Template Path. default 'formbuilder/email/default'"|t,

@@ -22,6 +22,7 @@ class FormBuilder_FormRecord extends BaseRecord
 			'handle'        						=> array(AttributeType::Handle, 'required' => true),
 			'toEmail'       						=> array(AttributeType::Name, 'required' => true),
 			'subject'       						=> array(AttributeType::Name),
+			'notifyRegistrant'       		=> array(AttributeType::Bool),
 			'notificationTemplatePath'	=> array(AttributeType::String, 'required' => true),
 			'fieldLayoutId' 						=> AttributeType::Number,
 		);

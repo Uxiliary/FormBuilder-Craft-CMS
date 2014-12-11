@@ -99,7 +99,7 @@ class FormBuilder_EntriesService extends BaseApplicationComponent
 		$email = new EmailModel();
 
 		// $email->fromEmail = $form->fromEmail;
-		// $email->replyTo   = $form->replyToEmail;
+		$email->replyTo   = $form->yourEmail;
 		// $email->sender    = $form->fromEmail;
 		$email->fromName  = 'FormBuilder Plugin';
 		$email->subject   = $form->subject;
@@ -113,6 +113,34 @@ class FormBuilder_EntriesService extends BaseApplicationComponent
 			if (!craft()->email->sendEmail($email)) {
 				$errors = true;
 			}
+		}
+		return $errors ? false : true;
+	}
+
+	/**
+	 * 
+	 * Send Email notification to registrant
+	 * 
+	 */
+	public function sendRegistrantEmailNotification($form, $message, $html = true, $email = null)
+	{
+		// Generic errors bool
+		$errors = false;
+
+		$email = new EmailModel();
+
+		$email->fromEmail = $form->toEmail;
+		$email->replyTo   = $form->toEmail;
+		$email->fromName  = 'Submission Notification';
+		$email->subject   = $form->subject;
+		$email->htmlBody  = $message;
+
+		// Support for sending multiple emails
+		$emailTo = $form->yourEmail;
+
+		$email->toEmail = trim($emailTo);
+		if (!craft()->email->sendEmail($email)) {
+			$errors = true;
 		}
 		return $errors ? false : true;
 	}

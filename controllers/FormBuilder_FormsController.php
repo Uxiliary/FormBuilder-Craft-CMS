@@ -63,6 +63,7 @@ class FormBuilder_FormsController extends BaseController
 		$form->handle     									= craft()->request->getPost('handle');
 		$form->toEmail     									= craft()->request->getPost('toEmail');
 		$form->subject     									= craft()->request->getPost('subject');
+		$form->notifyRegistrant     				= craft()->request->getPost('notifyRegistrant');
 		$form->notificationTemplatePath     = craft()->request->getPost('notificationTemplatePath');
 
 		// Set the field layout

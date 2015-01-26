@@ -13,6 +13,7 @@ class FormBuilderTwigExtension extends \Twig_Extension
   public function getFilters() {
     return array(
      'addSpace' => new Twig_Filter_Method($this, 'addSpace'),
+     'checkArray' => new Twig_Filter_Method($this, 'checkArray'),
     );
   }
 
@@ -20,5 +21,10 @@ class FormBuilderTwigExtension extends \Twig_Extension
     $addSpace = preg_replace('/(?<!\ )[A-Z]/', ' $0', $string);
     $fullString = ucfirst($addSpace);
     return $fullString;
+  }
+
+  public function checkArray($array) {
+    $check = is_array($array);
+    return $check;
   }
 }

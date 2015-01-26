@@ -8,7 +8,15 @@
     {% if value %}
     <tr>
       <td><strong>{{ key | addSpace }}: </strong></td>
+      
+      {% if value | checkArray == '1' %}
+      {% for key, item in value %}
+        <td>{{ item }}</td>
+      {% endfor %}
+      {% else %}
       <td>{{ value }}</td>
+      {% endif %}
+
     </tr>
     {% endif %}
   {% endfor %}

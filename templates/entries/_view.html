@@ -34,7 +34,13 @@
       {% if value %}
       <tr>
         <td><strong>{{ name | addSpace }}</strong></td>
+        {% if value | checkArray == '1' %}
+        {% for key, item in value %}
+          <td>{{ item | markdown }}</td>
+        {% endfor %}
+        {% else %}
         <td>{{ value | markdown }}</td>
+        {% endif %}
       </tr>
       {% endif %}
     {% endfor %}

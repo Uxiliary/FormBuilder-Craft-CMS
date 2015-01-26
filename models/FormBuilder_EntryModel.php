@@ -61,13 +61,24 @@ class FormBuilder_EntryModel extends BaseElementModel
 		foreach ($data as $key => $value) {	
 			$capitalize = ucfirst($key);
 			$addSpace = preg_replace('/(?<!\ )[A-Z]/', ' $0', $capitalize);
-			$newData .= '<li class="left icon text" style="margin-right:10px;"><strong>' . $addSpace . "</strong>: {$value}</li>";
+			$valueArray = is_array($value);
+			if ($valueArray == '1') {
+				$newData .= '<li class="left icon text" style="margin-right:10px;"><strong>' . $addSpace . '</strong>: ';
+				foreach ($value as $item) {
+					$newData .= ' ' . $item;
+				}
+				$newData .= '</li>';
+			} else {
+				$newData .= '<li class="left icon text" style="margin-right:10px;"><strong>' . $addSpace . '</strong>: ' . $value . '</li>';
+			}
 		}
+
 		$newData .= "</ul>";
 
 		$this->__set('data', $newData);
 		return $this;
 	}
+
 
 	private function _filterPostKeys($post)
 	{

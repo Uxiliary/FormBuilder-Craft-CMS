@@ -12,7 +12,7 @@ class FormBuilder_EntriesController extends BaseController
 	public function actionEntriesIndex()
 	{
 		// Get the data
-		$variables = craft()->formBuilder_entries->getAllEntries();
+		$variables['entries'] = craft()->formBuilder_entries->getAllEntries();
 		$variables['tabs'] = $this->_getTabs();
 
 		// Render the template!

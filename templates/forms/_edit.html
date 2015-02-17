@@ -21,6 +21,7 @@
 	<form method="post" accept-charset="UTF-8" data-saveshortcut="1">
 		<input type="hidden" name="action" value="formBuilder/forms/saveForm">
 		<input type="hidden" name="redirect" value="formbuilder/forms">
+		{{ getCsrfInput() }}
 		{% if form.id %}<input type="hidden" name="formId" value="{{ form.id }}">{% endif %}
 
 		{{ forms.textField({
